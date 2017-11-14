@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Login KenkoSushi</h1>
+  <form>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" [(ngModel)]="form.username" name="username" required>
+
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" [(ngModel)]="form.password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="login()">Login</button>
+
+  </form>
+
+</div>
