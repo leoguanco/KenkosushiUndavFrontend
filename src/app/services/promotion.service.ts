@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import {GLOBAL} from "./global";
+import {GLOBAL} from './global';
 
 @Injectable()
 export class PromotionService {
@@ -13,25 +13,25 @@ export class PromotionService {
     'Content-Type': 'application/json'
   });
 
-  addPromotion(body){
+  addPromotion(body) {
     const json = JSON.stringify(body);
     return this._http.post(this.api + '/admin/promotions', json , {headers: this.headers});
   }
 
-  updatePromotion(id,body){
+  updatePromotion(id, body) {
     const json = JSON.stringify(body);
     return this._http.put(this.api + '/admin/promotions/' + id, json, {headers: this.headers});
   }
 
-  deletePromotion(id){
+  deletePromotion(id) {
     return this._http.delete(this.api + '/admin/promotions/' + id, {headers: this.headers});
   }
 
-  getAllPromotion(){
+  getAllPromotion() {
     return this._http.get(this.api + '/public/promotions/', {headers: this.headers});
   }
 
-  getPromotion(id){
+  getPromotion(id) {
     return this._http.get(this.api + '/public/promotions/' + id, {headers: this.headers});
   }
 

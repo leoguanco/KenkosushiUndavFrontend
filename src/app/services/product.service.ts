@@ -16,10 +16,26 @@ export class ProductService {
     'Content-Type': 'application/json'
   });
 
-  product(body){
+  addProduct(body){
     const json = JSON.stringify(body);
-    return this._http.post(this.api+'/product',json,{headers: this.headers});
+    return this._http.post(this.api + '/admin/product', json ,{ headers: this.headers });
   }
 
+  updateProduct(id, body) {
+    const json = JSON.stringify(body);
+    return this._http.put(this.api + '/admin/products/' + id, json, {headers: this.headers});
+  }
+
+  deleteProduct(id) {
+    return this._http.delete(this.api + '/admin/products/' + id, {headers: this.headers});
+  }
+
+  getAllProduct() {
+    return this._http.get(this.api + '/public/products/', {headers: this.headers});
+  }
+
+  getProduct(id) {
+    return this._http.get(this.api + '/public/products/' + id, {headers: this.headers});
+  }
 
 }
