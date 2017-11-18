@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Http,Headers} from "@angular/http";
-import {GLOBAL} from "./global";
-import 'rxjs/add/operator/map';
+import { Http, Headers } from '@angular/http';
+import { GLOBAL } from './global';
 
 @Injectable()
-export class ProductService {
+export class ConfigurationService {
 
   private api: string;
 
@@ -16,10 +15,9 @@ export class ProductService {
     'Content-Type': 'application/json'
   });
 
-  product(body){
+  updateConfiguration(id,body){
     const json = JSON.stringify(body);
-    return this._http.post(this.api+'/product',json,{headers: this.headers});
+    return this._http.put(this.api + '/admin/configurations/' + id, json, {headers: this.headers});
   }
-
 
 }

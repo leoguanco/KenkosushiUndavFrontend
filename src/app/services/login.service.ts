@@ -5,7 +5,7 @@ import {GLOBAL} from './global';
 
 @Injectable()
 export class LoginService {
-  private api: String;
+  private api: string;
 
   constructor(private _http: Http) {
     this.api = GLOBAL.api;
