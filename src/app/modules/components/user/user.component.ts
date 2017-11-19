@@ -1,46 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from '../../../services/product.service';
+import {UserService} from "../../../services/user.service";
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class ProductComponent implements OnInit {
+export class UserComponent implements OnInit {
+  public username: string;
+  public password: string;
+  public lastLogin: Date;
+  public isActive: Boolean;
   public name: string;
-  public type: string;
-  public image: string;
-  public description: string;
-  public price: number;
-  public marketable: boolean;
-  public amountPeople: number;
+  public surname: string;
+  public email: string;
+  public observations: string;
   public errorMessage;
-  public products;
-  public product;
+  public users;
+  public user;
 
-  constructor(private productService: ProductService) { }
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.getAllProduct();
+    this.getAllUser()
   }
 
-  addProduct() {
-    const data = {
+  addUser(){
+    const data={
+      username: this.username,
+      password: this.password,
+      lastLogin: this.lastLogin,
+      isActive: this.isActive,
       name: this.name,
-      type: this.type,
-      image: this.image,
-      description: this.description,
-      price: this.price,
-      marketable: this.marketable,
-      amountPeople: this.amountPeople
+      surname: this.surname,
+      email: this.email,
+      observations: this.observations
     };
 
-    this.productService.addProduct(data)
+    this.userService.addUser(data)
       .subscribe(
         response => {
           console.log(response);
         }, error => {
-          this.errorMessage= <any>error;
+          this.errorMessage = <any>error;
 
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);
@@ -49,18 +52,19 @@ export class ProductComponent implements OnInit {
       );
   }
 
-  updateProduct(item) {
-    const data = {
+  updateUser(item){
+    const data={
+      username: this.username,
+      password: this.password,
+      lastLogin: this.lastLogin,
+      isActive: this.isActive,
       name: this.name,
-      type: this.type,
-      image: this.image,
-      description: this.description,
-      price: this.price,
-      marketable: this.marketable,
-      amountPeople: this.amountPeople
+      surname: this.surname,
+      email: this.email,
+      observations: this.observations
     };
 
-    this.productService.updateProduct(item.id, data)
+    this.userService.updateUser(item.id, data)
       .subscribe(
         response => {
           console.log(response);
@@ -74,8 +78,8 @@ export class ProductComponent implements OnInit {
       );
   }
 
-  deleteProduct(item) {
-    this.productService.deleteProduct(item.id)
+  deleteUser(item){
+    this.userService.deleteUser(item.id)
       .subscribe(
         response => {
           console.log(response);
@@ -89,12 +93,12 @@ export class ProductComponent implements OnInit {
       );
   }
 
-  getAllProduct() {
-    this.productService.getAllProduct()
+  getAllUser(){
+    this.userService.getAllUser()
       .subscribe(
         response => {
           console.log(response);
-          this.products = response;
+          this.users = response;
         }, error => {
           this.errorMessage = <any>error;
 
@@ -105,12 +109,12 @@ export class ProductComponent implements OnInit {
       );
   }
 
-  getProduct(item) {
-    this.productService.getProduct(item.id)
+  getUser(item){
+    this.userService.getUser(item.id)
       .subscribe(
         response => {
           console.log(response);
-          this.product = response;
+          this.user = response;
         }, error => {
           this.errorMessage = <any>error;
 
@@ -120,5 +124,10 @@ export class ProductComponent implements OnInit {
         }
       );
   }
+
+
+
+
+
 
 }

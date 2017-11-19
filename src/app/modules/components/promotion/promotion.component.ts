@@ -1,41 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from '../../../services/product.service';
+import {PromotionService} from "../../../services/promotion.service";
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-promotion',
+  templateUrl: './promotion.component.html',
+  styleUrls: ['./promotion.component.css']
 })
-export class ProductComponent implements OnInit {
-  public name: string;
-  public type: string;
-  public image: string;
-  public description: string;
-  public price: number;
-  public marketable: boolean;
-  public amountPeople: number;
+export class PromotionComponent implements OnInit {
+  public day: Date;
+  public percentaje: number;
   public errorMessage;
-  public products;
-  public product;
+  public promotions;
+  public promotion;
 
-  constructor(private productService: ProductService) { }
+
+  constructor(private promotionService: PromotionService) { }
 
   ngOnInit() {
-    this.getAllProduct();
+    this.getAllPromotion();
   }
 
-  addProduct() {
-    const data = {
-      name: this.name,
-      type: this.type,
-      image: this.image,
-      description: this.description,
-      price: this.price,
-      marketable: this.marketable,
-      amountPeople: this.amountPeople
-    };
+  addPromotion(){
+    const data={
+      day: this.day,
+      percentaje: this.percentaje
+    }
 
-    this.productService.addProduct(data)
+    this.promotionService.addPromotion(data)
       .subscribe(
         response => {
           console.log(response);
@@ -49,18 +40,13 @@ export class ProductComponent implements OnInit {
       );
   }
 
-  updateProduct(item) {
-    const data = {
-      name: this.name,
-      type: this.type,
-      image: this.image,
-      description: this.description,
-      price: this.price,
-      marketable: this.marketable,
-      amountPeople: this.amountPeople
-    };
+  updatePromotion(item){
+    const data={
+      day: this.day,
+      percentaje: this.percentaje
+    }
 
-    this.productService.updateProduct(item.id, data)
+    this.promotionService.updatePromotion(item.id, data)
       .subscribe(
         response => {
           console.log(response);
@@ -74,8 +60,8 @@ export class ProductComponent implements OnInit {
       );
   }
 
-  deleteProduct(item) {
-    this.productService.deleteProduct(item.id)
+  deletePromotion(item){
+    this.promotionService.deletePromotion(item.id)
       .subscribe(
         response => {
           console.log(response);
@@ -89,12 +75,12 @@ export class ProductComponent implements OnInit {
       );
   }
 
-  getAllProduct() {
-    this.productService.getAllProduct()
+  getAllPromotion(){
+    this.promotionService.getAllPromotion()
       .subscribe(
         response => {
           console.log(response);
-          this.products = response;
+          this.promotions = response;
         }, error => {
           this.errorMessage = <any>error;
 
@@ -105,12 +91,12 @@ export class ProductComponent implements OnInit {
       );
   }
 
-  getProduct(item) {
-    this.productService.getProduct(item.id)
+  getPromotion(item){
+    this.promotionService.getPromotion(item.id)
       .subscribe(
         response => {
           console.log(response);
-          this.product = response;
+          this.promotion = response;
         }, error => {
           this.errorMessage = <any>error;
 
