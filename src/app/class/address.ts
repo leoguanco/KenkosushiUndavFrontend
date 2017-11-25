@@ -1,3 +1,5 @@
+import {User} from "./user";
+
 export class Address {
   constructor(
     public id: number,
@@ -5,5 +7,5 @@ export class Address {
     public floor: string,
     public office: string,
     public typeAddress: string,
-    public userId: number) { }
+    public userId: User) { }
 }
