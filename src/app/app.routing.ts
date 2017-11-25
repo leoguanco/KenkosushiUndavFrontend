@@ -6,14 +6,16 @@ import { HomeComponent } from './modules/components/home/home.component';
 import {ConfigurationComponent} from './modules/components/configuration/configuration.component';
 import {ProductComponent} from './modules/components/product/product.component';
 import {UserComponent} from './modules/components/user/user.component';
+import {ContactComponent} from './modules/components/contact/contact.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'configuration', component: ConfigurationComponent},
-  { path: 'product', component: ProductComponent},
-  { path: 'user', component: UserComponent},
+  { path: 'products', component: ProductComponent},
+  { path: 'users', component: UserComponent},
+  { path: 'contact', component: ContactComponent},
   { path: '**', component: HomeComponent}
 ];
 
