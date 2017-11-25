@@ -1,51 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../../services/user.service";
-
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../class/user' ;
+import {Address} from '../../../class/address';
+import {Phone} from '../../../class/phone';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+
 export class UserComponent implements OnInit {
-  public username: string;
-  public password: string;
-  public lastLogin: Date;
-  public isActive: Boolean;
-  public name: string;
-  public surname: string;
-  public email: string;
-  public observations: string;
+  public user: User;
   public errorMessage;
-  public users;
-  public user;
-
-  public address: string;
-  public floor: string;
-  public office: string;
-  public typeAdress: string;
-
-  public phone: number;
-  public typePhone: string;
-
-
-
+  public users: Array<User>;
+  public address: Address;
+  public phone: Phone;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.getAllUser()
+    this.getAllUser();
   }
 
-  addUser(){
-    const data={
-      username: this.username,
-      password: this.password,
-      lastLogin: this.lastLogin,
-      isActive: this.isActive,
-      name: this.name,
-      surname: this.surname,
-      email: this.email,
-      observations: this.observations
+  addUser() {
+    const data = {
+      username: this.user.username,
+      password: this.user.password,
+      lastLogin: this.user.lastLogin,
+      isActive: this.user.isActive,
+      name: this.user.name,
+      surname: this.user.surname,
+      email: this.user.email,
+      observations: this.user.observations
     };
 
     this.userService.addUser(data)
@@ -62,16 +48,16 @@ export class UserComponent implements OnInit {
       );
   }
 
-  updateUser(item){
-    const data={
-      username: this.username,
-      password: this.password,
-      lastLogin: this.lastLogin,
-      isActive: this.isActive,
-      name: this.name,
-      surname: this.surname,
-      email: this.email,
-      observations: this.observations
+  updateUser(item) {
+    const data = {
+      username: this.user.username,
+      password: this.user.password,
+      lastLogin: this.user.lastLogin,
+      isActive: this.user.isActive,
+      name: this.user.name,
+      surname: this.user.surname,
+      email: this.user.email,
+      observations: this.user.observations
     };
 
     this.userService.updateUser(item.id, data)
@@ -88,7 +74,7 @@ export class UserComponent implements OnInit {
       );
   }
 
-  deleteUser(item){
+  deleteUser(item) {
     this.userService.deleteUser(item.id)
       .subscribe(
         response => {
@@ -103,7 +89,7 @@ export class UserComponent implements OnInit {
       );
   }
 
-  getAllUser(){
+  getAllUser() {
     this.userService.getAllUser()
       .subscribe(
         response => {
@@ -119,12 +105,12 @@ export class UserComponent implements OnInit {
       );
   }
 
-  getUser(item){
+  getUser(item) {
     this.userService.getUser(item.id)
       .subscribe(
         response => {
           console.log(response);
-          this.user = response;
+          this.user = response.data;
         }, error => {
           this.errorMessage = <any>error;
 
@@ -135,12 +121,12 @@ export class UserComponent implements OnInit {
       );
   }
 
-  addUserAddress(){
-    const data={
-      address: this.address,
-      floor: this.floor,
-      office: this.office,
-      typeAddress: this.typeAdress
+  addUserAddress() {
+    const data = {
+      address: this.address.address,
+      floor: this.address.floor,
+      office: this.address.office,
+      typeAddress: this.address.typeAddress
     };
 
     this.userService.addUserAddress(data)
@@ -157,12 +143,12 @@ export class UserComponent implements OnInit {
       );
   }
 
-  updateUserAddress(item){
-    const data={
+  updateUserAddress(item) {
+    const data = {
       address: this.address,
-      floor: this.floor,
-      office: this.office,
-      typeAddress: this.typeAdress
+      floor: this.address.floor,
+      office: this.address.office,
+      typeAddress: this.address.typeAddress
     };
 
     this.userService.updateUserAddress(item.id, data)
@@ -181,7 +167,7 @@ export class UserComponent implements OnInit {
 
   }
 
-  deleteUserAddress(item){
+  deleteUserAddress(item) {
     this.userService.deleteUserAddress(item.id)
       .subscribe(
         response => {
@@ -196,12 +182,12 @@ export class UserComponent implements OnInit {
       );
   }
 
-  getAllUserAddress(){
+  getAllUserAddress() {
     this.userService.getAllUserAddress()
       .subscribe(
         response => {
           console.log(response);
-          this.users = response;
+          this.users = response.data;
         }, error => {
           this.errorMessage = <any>error;
 
@@ -212,10 +198,10 @@ export class UserComponent implements OnInit {
       );
   }
 
-  addUserPhone(){
-    const data={
-      phone: this.phone,
-      typePhone: this.typePhone
+  addUserPhone() {
+    const data = {
+      phone: this.phone.phone,
+      typePhone: this.phone.typePhone
     };
 
     this.userService.addUserPhone(data)
@@ -232,10 +218,10 @@ export class UserComponent implements OnInit {
       );
   }
 
-  updateUserPhone(item){
-    const data={
-      phone: this.phone,
-      typePhone: this.typePhone
+  updateUserPhone(item) {
+    const data = {
+      phone: this.phone.phone,
+      typePhone: this.phone.typePhone
     };
 
     this.userService.updateUserPhone(item.id, data)
@@ -268,7 +254,7 @@ export class UserComponent implements OnInit {
       );
   }
 
-  getAllUserPhone(){
+  getAllUserPhone() {
     this.userService.getAllUserPhone()
       .subscribe(
         response => {

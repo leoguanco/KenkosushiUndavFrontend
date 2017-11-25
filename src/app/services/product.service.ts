@@ -31,11 +31,13 @@ export class ProductService {
   }
 
   getAllProduct() {
-    return this._http.get(this.api + '/public/products/', {headers: this.headers});
+    return this._http.get(this.api + '/public/products/', {headers: this.headers})
+      .map( res => res.json());
   }
 
   getProduct(id) {
-    return this._http.get(this.api + '/public/products/' + id, {headers: this.headers});
+    return this._http.get(this.api + '/public/products/' + id, {headers: this.headers})
+      .map( res => res.json());
   }
 
 }

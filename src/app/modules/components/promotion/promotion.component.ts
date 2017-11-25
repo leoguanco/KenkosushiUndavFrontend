@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PromotionService} from "../../../services/promotion.service";
+import {PromotionService} from '../../../services/promotion.service';
+import {Promotion} from '../../../class/promotion';
 
 @Component({
   selector: 'app-promotion',
@@ -7,11 +8,9 @@ import {PromotionService} from "../../../services/promotion.service";
   styleUrls: ['./promotion.component.css']
 })
 export class PromotionComponent implements OnInit {
-  public day: Date;
-  public percentaje: number;
   public errorMessage;
-  public promotions;
-  public promotion;
+  public promotions: Array<Promotion>;
+  public promotion: Promotion;
 
 
   constructor(private promotionService: PromotionService) { }
@@ -20,11 +19,11 @@ export class PromotionComponent implements OnInit {
     this.getAllPromotion();
   }
 
-  addPromotion(){
-    const data={
-      day: this.day,
-      percentaje: this.percentaje
-    }
+  addPromotion() {
+    const data = {
+      day: this.promotion.day,
+      percentaje: this.promotion.percentaje
+    };
 
     this.promotionService.addPromotion(data)
       .subscribe(
@@ -40,11 +39,11 @@ export class PromotionComponent implements OnInit {
       );
   }
 
-  updatePromotion(item){
-    const data={
-      day: this.day,
-      percentaje: this.percentaje
-    }
+  updatePromotion(item) {
+    const data = {
+      day: this.promotion.day,
+      percentaje: this.promotion.percentaje
+    };
 
     this.promotionService.updatePromotion(item.id, data)
       .subscribe(
@@ -60,7 +59,7 @@ export class PromotionComponent implements OnInit {
       );
   }
 
-  deletePromotion(item){
+  deletePromotion(item) {
     this.promotionService.deletePromotion(item.id)
       .subscribe(
         response => {
@@ -75,7 +74,7 @@ export class PromotionComponent implements OnInit {
       );
   }
 
-  getAllPromotion(){
+  getAllPromotion() {
     this.promotionService.getAllPromotion()
       .subscribe(
         response => {

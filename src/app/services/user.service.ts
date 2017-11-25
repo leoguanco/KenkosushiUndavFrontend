@@ -33,10 +33,12 @@ export class UserService {
   }
 
   getAllUser(){
-    return this._http.get(this.api+'/admin/users',{headers:this.headers});
+    return this._http.get(this.api+'/admin/users',{headers:this.headers})
+      .map(res => res.json());
   }
   getUser(id){
-    return this._http.get(this.api+'/admin/users'+id,{headers:this.headers});
+    return this._http.get(this.api+'/admin/users'+id,{headers:this.headers})
+      .map(res => res.json());
   }
 
   addUserAddress(body){
@@ -54,7 +56,8 @@ export class UserService {
   }
 
   getAllUserAddress(){
-    return this._http.get(this.api+'/admin/address',{headers:this.headers});
+    return this._http.get(this.api+'/admin/address',{headers:this.headers})
+      .map(res => res.json());
   }
 
   addUserPhone(body){
@@ -72,7 +75,8 @@ export class UserService {
   }
 
   getAllUserPhone(){
-    return this._http.get(this.api+'/admin/phones',{headers:this.headers});
+    return this._http.get(this.api+'/admin/phones',{headers:this.headers})
+      .map(res => res.json());
   }
 
   addUserPurchase(body){
@@ -89,7 +93,8 @@ export class UserService {
   }
 
   getAllUserPurchases(){
-    return this._http.get(this.api+'/admin/purchases',{headers:this.headers});
+    return this._http.get(this.api+'/admin/purchases',{headers:this.headers})
+      .map(res => res.json());
   }
 
   addUserRole(body){

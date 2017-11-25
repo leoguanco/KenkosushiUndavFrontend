@@ -28,11 +28,13 @@ export class PromotionService {
   }
 
   getAllPromotion() {
-    return this._http.get(this.api + '/public/promotions/', {headers: this.headers});
+    return this._http.get(this.api + '/public/promotions/', {headers: this.headers})
+      .map( res => res.json());
   }
 
   getPromotion(id) {
-    return this._http.get(this.api + '/public/promotions/' + id, {headers: this.headers});
+    return this._http.get(this.api + '/public/promotions/' + id, {headers: this.headers})
+      .map( res => res.json());
   }
 
 
