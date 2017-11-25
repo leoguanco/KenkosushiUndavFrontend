@@ -1,16 +1,22 @@
-<div class="container">
-  <h1>Login KenkoSushi</h1>
-  <form>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" [(ngModel)]="form.username" name="username" required>
+<body class="gray-bg">
+  <div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+      <div>
 
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" [(ngModel)]="form.password" name="password" required>
+        <h1 class="logo-name">KS</h1>
+
+      </div>
+      <h3>Welcome to IN+</h3>
+      <p>Login in. To see it in action.</p>
+      <form class="m-t" role="form" action="index.html">
+        <div class="form-group">
+          <input type="email" name="username" class="form-control" [(ngModel)]="form.username" placeholder="Username" required="">
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" class="form-control" [(ngModel)]="form.password" placeholder="Password" required="">
+        </div>
+        <button type="submit" class="btn btn-primary block full-width m-b"(click)="login()">Login</button>
+      </form>
     </div>
-
-    <button type="submit" class="btn btn-success" (click)="login()">Login</button>
-
-  </form>
-
-</div>
+  </div>
+</body>
