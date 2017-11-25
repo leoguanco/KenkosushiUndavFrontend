@@ -14,6 +14,8 @@ import { ProductService } from './services/product.service';
 import { UserComponent } from './modules/components/user/user.component';
 import { PromotionComponent } from './modules/components/promotion/promotion.component';
 import { ConfigurationComponent } from './modules/components/configuration/configuration.component';
+import { NavbarComponent } from './modules/components/navbar/navbar.component';
+import { ContactComponent } from './modules/components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ConfigurationComponent } from './modules/components/configuration/confi
     ProductComponent,
     UserComponent,
     PromotionComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    NavbarComponent,
+    ContactComponent
   ],
   imports: [
     HttpModule,
