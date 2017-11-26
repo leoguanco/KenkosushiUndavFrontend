@@ -11,13 +11,19 @@ import { LoginService } from './services/login.service';
 import { routing, appRoutingProviders } from './app.routing';
 import { ProductComponent } from './modules/components/product/product.component';
 import { ProductService } from './services/product.service';
+import { UserComponent } from './modules/components/user/user.component';
+import { PromotionComponent } from './modules/components/promotion/promotion.component';
+import { ConfigurationComponent } from './modules/components/configuration/configuration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+    UserComponent,
+    PromotionComponent,
+    ConfigurationComponent
   ],
   imports: [
     HttpModule,
