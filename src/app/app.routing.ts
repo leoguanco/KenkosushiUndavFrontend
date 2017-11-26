@@ -3,12 +3,20 @@ import { Routes, RouterModule} from '@angular/router';
 
 import { LoginComponent } from './modules/components/login/login.component';
 import { HomeComponent } from './modules/components/home/home.component';
+import {ConfigurationComponent} from './modules/components/configuration/configuration.component';
+import {ProductComponent} from './modules/components/product/product.component';
+import {UserComponent} from './modules/components/user/user.component';
+import {ContactComponent} from './modules/components/contact/contact.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
-  { path: '**', component: LoginComponent}
+  { path: 'configuration', component: ConfigurationComponent},
+  { path: 'products', component: ProductComponent},
+  { path: 'users', component: UserComponent},
+  { path: 'contact', component: ContactComponent},
+  { path: '**', component: HomeComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

@@ -22,74 +22,72 @@
   <!-- Custom styles for this template -->
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
-<body id="page-top" class="landing-page no-skin-config">
 
-  <app-root></app-root>
+<app-root></app-root>
 
-  <!-- Mainly scripts -->
-  <script src="assets/js/jquery-3.1.1.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-  <script src="assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Mainly scripts -->
+<script src="../assets/js/jquery-3.1.1.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="../assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-  <!-- Custom and plugin javascript -->
-  <script src="assets/js/inspinia.js"></script>
-  <script src="assets/js/plugins/pace/pace.min.js"></script>
-  <script src="assets/js/plugins/wow/wow.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="../assets/js/inspinia.js"></script>
+<script src="../assets/js/plugins/pace/pace.min.js"></script>
+<script src="../assets/js/plugins/wow/wow.min.js"></script>
 
-  <script>
+<script>
 
-    $(document).ready(function () {
+  $(document).ready(function () {
 
-      $('body').scrollspy({
-        target: '.navbar-fixed-top',
-        offset: 80
-      });
-
-      // Page scrolling feature
-      $('a.page-scroll').bind('click', function(event) {
-        var link = $(this);
-        $('html, body').stop().animate({
-          scrollTop: $(link.attr('href')).offset().top - 50
-        }, 500);
-        event.preventDefault();
-        $("#navbar").collapse('hide');
-      });
+    $('body').scrollspy({
+      target: '.navbar-fixed-top',
+      offset: 80
     });
 
-    var cbpAnimatedHeader = (function() {
-      var docElem = document.documentElement,
-        header = document.querySelector( '.navbar-default' ),
-        didScroll = false,
-        changeHeaderOn = 200;
-      function init() {
-        window.addEventListener( 'scroll', function( event ) {
-          if( !didScroll ) {
-            didScroll = true;
-            setTimeout( scrollPage, 250 );
-          }
-        }, false );
-      }
-      function scrollPage() {
-        var sy = scrollY();
-        if ( sy >= changeHeaderOn ) {
-          $(header).addClass('navbar-scroll')
+    // Page scrolling feature
+    $('a.page-scroll').bind('click', function(event) {
+      var link = $(this);
+      $('html, body').stop().animate({
+        scrollTop: $(link.attr('href')).offset().top - 50
+      }, 500);
+      event.preventDefault();
+      $("#navbar").collapse('hide');
+    });
+  });
+
+  var cbpAnimatedHeader = (function() {
+    var docElem = document.documentElement,
+      header = document.querySelector( '.navbar-default' ),
+      didScroll = false,
+      changeHeaderOn = 200;
+    function init() {
+      window.addEventListener( 'scroll', function( event ) {
+        if( !didScroll ) {
+          didScroll = true;
+          setTimeout( scrollPage, 250 );
         }
-        else {
-          $(header).removeClass('navbar-scroll')
-        }
-        didScroll = false;
+      }, false );
+    }
+    function scrollPage() {
+      var sy = scrollY();
+      if ( sy >= changeHeaderOn ) {
+        $(header).addClass('navbar-scroll')
       }
-      function scrollY() {
-        return window.pageYOffset || docElem.scrollTop;
+      else {
+        $(header).removeClass('navbar-scroll')
       }
-      init();
+      didScroll = false;
+    }
+    function scrollY() {
+      return window.pageYOffset || docElem.scrollTop;
+    }
+    init();
 
-    })();
+  })();
 
-    // Activate WOW.js plugin for animation on scrol
-    new WOW().init();
+  // Activate WOW.js plugin for animation on scrol
+  new WOW().init();
 
-  </script>
-</body>
+</script>
 </html>

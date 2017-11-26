@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfigurationService} from "../../../services/configuration.service";
+import {ConfigurationService} from '../../../services/configuration.service';
+import {Configuration} from '../../../class/configuration';
 
 @Component({
   selector: 'app-configuration',
@@ -7,25 +8,20 @@ import {ConfigurationService} from "../../../services/configuration.service";
   styleUrls: ['./configuration.component.css']
 })
 export class ConfigurationComponent implements OnInit {
-  public quantityDelivery: number;
-  public minDeliveryTime: Date;
-  public minDeliveryTimeOrd: Date;
   public errorMessage;
-  public configurations;
-  public configuration;
-
+  public configuration: Configuration;
 
   constructor(private configurationService: ConfigurationService) { }
 
   ngOnInit() {
   }
 
-  updateConfiguration(item){
-    const data={
-      quantityDelivery: this.quantityDelivery,
-      minDeliveryTime: this.minDeliveryTime,
-      minDeliveryTimeOrd: this.minDeliveryTimeOrd
-    }
+  updateConfiguration(item) {
+    const data = {
+      quantityDelivery: this.configuration.quantityDelivery,
+      minDeliveryTime: this.configuration.minDeliveryTime,
+      minDeliveryTimeOrd: this.configuration.minDeliveryTimeOrd
+    };
 
     this.configurationService.updateConfiguration(item.id, data)
       .subscribe(
@@ -39,10 +35,8 @@ export class ConfigurationComponent implements OnInit {
           }
         }
       );
-
-
   }
 
-  updatePurchaseSystem(){}
+  updatePurchaseSystem() {}
 
 }

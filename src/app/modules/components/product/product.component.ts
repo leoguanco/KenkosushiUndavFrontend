@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../../services/product.service';
+import {Product} from '../../../class/product';
 
 @Component({
   selector: 'app-product',
@@ -7,16 +8,9 @@ import {ProductService} from '../../../services/product.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  public name: string;
-  public type: string;
-  public image: string;
-  public description: string;
-  public price: number;
-  public marketable: boolean;
-  public amountPeople: number;
   public errorMessage;
-  public products;
-  public product;
+  public products: Array<Product>;
+  public product: Product;
 
   constructor(private productService: ProductService) { }
 
@@ -26,13 +20,13 @@ export class ProductComponent implements OnInit {
 
   addProduct() {
     const data = {
-      name: this.name,
-      type: this.type,
-      image: this.image,
-      description: this.description,
-      price: this.price,
-      marketable: this.marketable,
-      amountPeople: this.amountPeople
+      name: this.product.name,
+      type: this.product.type,
+      image: this.product.image,
+      description: this.product.description,
+      price: this.product.price,
+      marketable: this.product.marketable,
+      amountPeople: this.product.amountPeople
     };
 
     this.productService.addProduct(data)
@@ -51,13 +45,13 @@ export class ProductComponent implements OnInit {
 
   updateProduct(item) {
     const data = {
-      name: this.name,
-      type: this.type,
-      image: this.image,
-      description: this.description,
-      price: this.price,
-      marketable: this.marketable,
-      amountPeople: this.amountPeople
+      name: this.product.name,
+      type: this.product.type,
+      image: this.product.image,
+      description: this.product.description,
+      price: this.product.price,
+      marketable: this.product.marketable,
+      amountPeople: this.product.amountPeople
     };
 
     this.productService.updateProduct(item.id, data)
