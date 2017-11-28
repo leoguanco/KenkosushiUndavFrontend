@@ -16,6 +16,8 @@ import { PromotionComponent } from './modules/components/promotion/promotion.com
 import { ConfigurationComponent } from './modules/components/configuration/configuration.component';
 import { NavbarComponent } from './modules/components/navbar/navbar.component';
 import { ContactComponent } from './modules/components/contact/contact.component';
+import {SlickModule} from 'ngx-slick';
+import { LunchbuffetComponent } from './modules/components/lunchbuffet/lunchbuffet.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,15 @@ import { ContactComponent } from './modules/components/contact/contact.component
     PromotionComponent,
     ConfigurationComponent,
     NavbarComponent,
-    ContactComponent
+    ContactComponent,
+    LunchbuffetComponent
   ],
   imports: [
     HttpModule,
     FormsModule,
     BrowserModule,
-    routing
+    routing,
+    SlickModule.forRoot()
   ],
   providers: [appRoutingProviders, LoginService, ProductService],
   bootstrap: [AppComponent]
