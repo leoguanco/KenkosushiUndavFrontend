@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {forEach} from "@angular/router/src/utils/collection";
+import {User} from "../../../class/user";
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +11,40 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   public token: string = localStorage.getItem('token');
-
-  constructor(private router: Router) { }
+  public admin = false;
+  private errorMessage: any;
+  constructor(private router: Router, private _loginService: LoginService) { }
 
   ngOnInit() {
+    this.isAdmin();
   }
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigate(['home']);
+  }
+
+  isAdmin() {
+
+    this._loginService.whoAmI()
+      .subscribe(
+        response2 => {
+          localStorage.setItem('user', JSON.stringify(response2));
+          console.log(localStorage.getItem('user'));
+        }, error2 => {
+          this.errorMessage = <any>error2;
+
+          if (this.errorMessage !== null) {
+            console.log(this.errorMessage);
+          }
+        }
+      );
+    JSON.parse(localStorage.getItem('user')).role.forEach(item => {
+      if (item === 'ROLE_ADMIN') {
+        console.log(item);
+        this.admin = true;
+      }
+    });
   }
 }

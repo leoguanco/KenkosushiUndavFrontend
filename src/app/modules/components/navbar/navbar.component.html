@@ -13,8 +13,11 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a class="page-scroll" href="#page-top">Inicio</a></li>
           <li><a class="page-scroll" routerLink="/products">Catálogo de Productos</a></li>
-          <li><a class="page-scroll" href="#testimonials">Lunch & Buffet</a></li>
+          <li><a class="page-scroll" routerLink="/lunchbuffet">Lunch & Buffet</a></li>
           <li><a class="page-scroll" routerLink="/contact">Contacto</a></li>
+          <li *ngIf="admin"><a class="page-scroll" routerLink="/contact">ABM Productos</a></li>
+          <li *ngIf="admin"><a class="page-scroll" routerLink="/contact">ABM Usuarios</a></li>
+          <li *ngIf="admin"><a class="page-scroll" routerLink="/contact">Configuración</a></li>
           <li><a class="page-scroll" *ngIf="token == null" routerLink="/login" routerLinkActive="active">LogIn</a></li>
           <li><a class="page-scroll" *ngIf="token != null" routerLink="/home" (click)="logout()" routerLinkActive="active">LogOut</a></li>
         </ul>
