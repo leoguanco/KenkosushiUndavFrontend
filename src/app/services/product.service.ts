@@ -13,10 +13,11 @@ export class ProductService {
   }
 
   headers = new Headers({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('token')
   });
 
-  addProduct(body){
+  addProduct(body) {
     const json = JSON.stringify(body);
     return this._http.post(this.api + '/admin/product', json ,{ headers: this.headers });
   }
