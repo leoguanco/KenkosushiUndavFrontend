@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfigurationService} from '../../../services/configuration.service';
 import {Configuration} from '../../../class/configuration';
+import {PurchasingSystem} from '../../../class/purchasing-system';
 
 @Component({
   selector: 'app-configuration',
@@ -10,6 +11,7 @@ import {Configuration} from '../../../class/configuration';
 export class ConfigurationComponent implements OnInit {
   public errorMessage;
   public configuration: Configuration;
+  public purchasingSystem: PurchasingSystem;
 
   constructor(private configurationService: ConfigurationService) { }
 
