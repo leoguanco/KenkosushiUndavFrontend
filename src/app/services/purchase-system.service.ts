@@ -12,12 +12,18 @@ export class PurchaseSystemService {
   }
 
   headers = new Headers({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('token')
   });
+
+  getPurchaseSystem() {
+    return this._http.get(this.api + '/admin/purchasingSystem/', {headers: this.headers})
+      .map(res => res.json());
+  }
 
   updatePurchaseSystem(id, body) {
     const json = JSON.stringify(body);
-    return this._http.put(this.api + '/admin/purchasesystem/' + id, json, {headers: this.headers});
+    return this._http.put(this.api + '/admin/purchasingSystem/' + id, json, {headers: this.headers});
   }
 
 

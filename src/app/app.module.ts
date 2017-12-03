@@ -19,6 +19,7 @@ import { NavbarComponent } from './modules/components/navbar/navbar.component';
 import { ContactComponent } from './modules/components/contact/contact.component';
 //import {SlickModule} from 'ngx-slick';
 import { LunchbuffetComponent } from './modules/components/lunchbuffet/lunchbuffet.component';
+import {ConfigurationService} from './services/configuration.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,6 @@ import { LunchbuffetComponent } from './modules/components/lunchbuffet/lunchbuff
     routing,
     SlickModule.forRoot()
   ],
-  providers: [appRoutingProviders, LoginService, ProductService],
+  providers: [appRoutingProviders, LoginService, ProductService, ConfigurationService],
   bootstrap: [AppComponent]
 })
