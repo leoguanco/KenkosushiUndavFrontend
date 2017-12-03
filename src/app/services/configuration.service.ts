@@ -12,10 +12,16 @@ export class ConfigurationService {
   }
 
   headers = new Headers({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('token')
   });
 
-  updateConfiguration(id,body){
+  getConfiguration() {
+    return this._http.get(this.api + '/admin/configurations/', {headers: this.headers})
+      .map(res => res.json());
+  }
+
+  updateConfiguration(id, body) {
     const json = JSON.stringify(body);
     return this._http.put(this.api + '/admin/configurations/' + id, json, {headers: this.headers});
   }
