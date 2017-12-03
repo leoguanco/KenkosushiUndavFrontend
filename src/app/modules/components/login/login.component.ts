@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
         response => {
           this.headers = response.headers.get('Authorization');
           localStorage.setItem('token', this.headers);
-          console.log(this.headers);
-
           this._router.navigate(['']);
       },
         error => {

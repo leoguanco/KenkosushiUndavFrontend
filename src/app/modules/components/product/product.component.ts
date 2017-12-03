@@ -11,6 +11,9 @@ export class ProductComponent implements OnInit {
   public errorMessage;
   public products: Array<Product>;
   public product: Product;
+  public sushi = false;
+  public wok= false;
+  public entradas = false;
 
   constructor(private productService: ProductService) { }
 
@@ -34,7 +37,7 @@ export class ProductComponent implements OnInit {
         response => {
           console.log(response);
         }, error => {
-          this.errorMessage= <any>error;
+          this.errorMessage = <any>error;
 
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);

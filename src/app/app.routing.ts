@@ -7,6 +7,7 @@ import {ConfigurationComponent} from './modules/components/configuration/configu
 import {ProductComponent} from './modules/components/product/product.component';
 import {UserComponent} from './modules/components/user/user.component';
 import {ContactComponent} from './modules/components/contact/contact.component';
+import {LunchbuffetComponent} from './modules/components/lunchbuffet/lunchbuffet.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
   { path: 'products', component: ProductComponent},
   { path: 'users', component: UserComponent},
   { path: 'contact', component: ContactComponent},
+  { path: 'lunchbuffet', component: LunchbuffetComponent},
   { path: '**', component: HomeComponent}
 ];
 

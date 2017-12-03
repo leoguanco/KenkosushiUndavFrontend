@@ -21,4 +21,13 @@ export class LoginService {
     return this._http.post(this.api + '/login', json , {headers: this.headers});
   }
 
+  whoAmI() {
+    return this._http.get(this.api + '/whoAmI', {
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })})
+      .map(res => res.json());
+  }
+
 }

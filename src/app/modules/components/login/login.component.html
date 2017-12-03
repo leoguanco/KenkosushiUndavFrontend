@@ -1,22 +1,20 @@
-<body class="gray-bg">
-  <div class="middle-box text-center loginscreen animated fadeInDown">
+<div class="middle-box text-center loginscreen animated fadeInDown">
+  <div>
     <div>
-      <div>
 
-        <h1 class="logo-name">KS</h1>
+      <h1 class="logo-name">KS</h1>
 
-      </div>
-      <h3>Welcome to IN+</h3>
-      <p>Login in. To see it in action.</p>
-      <form class="m-t" role="form" action="index.html">
-        <div class="form-group">
-          <input type="email" name="username" class="form-control" [(ngModel)]="form.username" placeholder="Username" required="">
-        </div>
-        <div class="form-group">
-          <input type="password" name="password" class="form-control" [(ngModel)]="form.password" placeholder="Password" required="">
-        </div>
-        <button type="submit" class="btn btn-primary block full-width m-b"(click)="login()">Login</button>
-      </form>
     </div>
+    <h3>Welcome to IN+</h3>
+    <p>Login in. To see it in action.</p>
+    <form class="m-t" role="form" action="index.html">
+      <div class="form-group">
+        <input type="email" name="username" class="form-control" [(ngModel)]="form.username" placeholder="Username" required="">
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" [(ngModel)]="form.password" placeholder="Password" required="">
+      </div>
+      <button type="submit" class="btn btn-primary block full-width m-b"(click)="login()">Login</button>
+    </form>
   </div>
-</body>
+</div>
