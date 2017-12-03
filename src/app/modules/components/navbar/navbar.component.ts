@@ -31,7 +31,11 @@ export class NavbarComponent implements OnInit {
       .subscribe(
         response2 => {
           localStorage.setItem('user', JSON.stringify(response2));
-          console.log(localStorage.getItem('user'));
+          JSON.parse(localStorage.getItem('user')).role.forEach(item => {
+            if (item.role === 'ROLE_ADMIN') {
+              this.admin = true;
+            }
+          });
         }, error2 => {
           this.errorMessage = <any>error2;
 
@@ -40,11 +44,5 @@ export class NavbarComponent implements OnInit {
           }
         }
       );
-    JSON.parse(localStorage.getItem('user')).role.forEach(item => {
-      if (item === 'ROLE_ADMIN') {
-        console.log(item);
-        this.admin = true;
-      }
-    });
   }
 }
