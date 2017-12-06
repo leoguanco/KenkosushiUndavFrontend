@@ -36,6 +36,7 @@ export class AbmproductsComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.product = new Product();
           this.getAllProduct();
           this.view = 'products';
         }, error => {
@@ -70,6 +71,7 @@ export class AbmproductsComponent implements OnInit {
         response => {
           console.log(response);
           this.getAllProduct();
+          this.product = new Product();
           this.view = 'products';
         }, error => {
           this.errorMessage = <any>error;
