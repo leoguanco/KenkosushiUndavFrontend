@@ -9,6 +9,7 @@ import {Product} from '../../../class/product';
 })
 export class LunchbuffetComponent implements OnInit {
   public products: Array<Product>;
+  public Lunch = false;
   public errorMessage: any;
 
   constructor(private productService: ProductService) { }
