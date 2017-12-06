@@ -48,8 +48,14 @@ export class AbmproductsComponent implements OnInit {
       );
   }
 
+  editProduct(item) {
+    this.product = item;
+    this.view = 'edit';
+  }
+
   updateProduct(item) {
     const data = {
+      id: this.product.id,
       name: this.product.name,
       type: this.product.type,
       image: this.product.image,
@@ -63,6 +69,8 @@ export class AbmproductsComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.getAllProduct();
+          this.view = 'products';
         }, error => {
           this.errorMessage = <any>error;
 
@@ -78,6 +86,7 @@ export class AbmproductsComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.getAllProduct();
         }, error => {
           this.errorMessage = <any>error;
 
