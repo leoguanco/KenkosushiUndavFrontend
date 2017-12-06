@@ -8,6 +8,7 @@ import {ProductComponent} from './modules/components/product/product.component';
 import {UserComponent} from './modules/components/user/user.component';
 import {ContactComponent} from './modules/components/contact/contact.component';
 import {LunchbuffetComponent} from './modules/components/lunchbuffet/lunchbuffet.component';
+import {AbmproductsComponent} from './modules/components/abmproducts/abmproducts.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'users', component: UserComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'lunchbuffet', component: LunchbuffetComponent},
+  { path: 'ambproducts', component: AbmproductsComponent},
   { path: '**', component: HomeComponent}
 ];
 

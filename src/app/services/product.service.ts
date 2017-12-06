@@ -19,7 +19,7 @@ export class ProductService {
 
   addProduct(body) {
     const json = JSON.stringify(body);
-    return this._http.post(this.api + '/admin/product', json ,{ headers: this.headers });
+    return this._http.post(this.api + '/admin/products/', json ,{ headers: this.headers });
   }
 
   updateProduct(id, body) {

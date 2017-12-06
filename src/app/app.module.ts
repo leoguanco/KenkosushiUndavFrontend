@@ -19,6 +19,7 @@ import { ContactComponent } from './modules/components/contact/contact.component
 import {SlickModule} from 'ngx-slick';
 import { LunchbuffetComponent } from './modules/components/lunchbuffet/lunchbuffet.component';
 import {ConfigurationService} from './services/configuration.service';
+import { AbmproductsComponent } from './modules/components/abmproducts/abmproducts.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {ConfigurationService} from './services/configuration.service';
     ConfigurationComponent,
     NavbarComponent,
     ContactComponent,
-    LunchbuffetComponent
+    LunchbuffetComponent,
+    AbmproductsComponent
   ],
   imports: [
     HttpModule,
