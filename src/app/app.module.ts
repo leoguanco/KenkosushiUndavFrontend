@@ -14,12 +14,12 @@ import { ProductService } from './services/product.service';
 import { UserComponent } from './modules/components/user/user.component';
 import { PromotionComponent } from './modules/components/promotion/promotion.component';
 import { ConfigurationComponent } from './modules/components/configuration/configuration.component';
-
 import { NavbarComponent } from './modules/components/navbar/navbar.component';
 import { ContactComponent } from './modules/components/contact/contact.component';
-//import {SlickModule} from 'ngx-slick';
+import {SlickModule} from 'ngx-slick';
 import { LunchbuffetComponent } from './modules/components/lunchbuffet/lunchbuffet.component';
 import {ConfigurationService} from './services/configuration.service';
+import { AbmproductsComponent } from './modules/components/abmproducts/abmproducts.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import {ConfigurationService} from './services/configuration.service';
     ConfigurationComponent,
     NavbarComponent,
     ContactComponent,
-    LunchbuffetComponent
+    LunchbuffetComponent,
+    AbmproductsComponent
   ],
   imports: [
     HttpModule,
@@ -44,3 +45,4 @@ import {ConfigurationService} from './services/configuration.service';
   providers: [appRoutingProviders, LoginService, ProductService, ConfigurationService],
   bootstrap: [AppComponent]
 })
+export class AppModule { }
