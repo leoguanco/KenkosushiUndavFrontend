@@ -1,0 +1,182 @@
+<app-navbar></app-navbar>
+<br><br><br><br>
+
+<div class="wrapper border-bottom white-bg page-heading">
+  <div class="row">
+    <div class="col-lg-10">
+      <h2>ABM Productos</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/#">Inicio</a>
+        </li>
+        <li class="active">
+          <a><strong>Productos</strong></a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view == 'products'" class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="btn-group pull-right">
+                <button class="btn btn-primary" (click)="view = 'add'">Alta de Productos</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="products != []" class="ibox-content table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Tipo</th>
+                <th>Comercializable</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products">
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.type}}</td>
+                <td>
+                  <span *ngIf="product.marketable"><i class="fa fa-2x fa-check-circle-o"></i></span>
+                  <span *ngIf="!product.marketable"><i class="fa fa-2x fa-times-circle-o"></i></span>
+                </td>
+                <td><span (click)="editProduct(product)"><i class="fa fa-2x fa-tasks text-navy"></i></span></td>
+                <td><span (click)="deleteProduct(product)"><i class="fa fa-2x fa-times text-danger"></i></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view == 'add'" class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          Agregar Producto
+        </div>
+
+        <div class="ibox-content">
+          <div class="row">
+            <form #productForm="ngForm" (ngSubmit)="addProduct()">
+              <div class="form-group col-md-6">
+                <label for="name">Nombre: </label>
+                <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="product.name">
+                <hr class="hr-line-solid">
+
+                <label for="description">Descripción: </label>
+                <input type="text" class="form-control" id="description" name="description" required [(ngModel)]="product.description">
+                <hr class="hr-line-solid">
+
+                <label for="price">Precio: </label>
+                <input type="number" class="form-control" id="price" name="price" required [(ngModel)]="product.price">
+                <hr class="hr-line-solid">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="type">Tipo: </label>
+                <select class="form-control" name="type" id="type" required [(ngModel)]="product.type">
+                  <option value="sushi">Sushi</option>
+                  <option value="wok">Wok</option>
+                  <option value="entradas">Entradas y Salsas</option>
+                  <option value="lunch">Lunch</option>
+                  <option value="buffet">Buffet</option>
+                  <option value="dulces">Cosas Dulces</option>
+                </select>
+                <hr class="hr-line-solid">
+
+                <label for="amountPeople">Para cuantas personas: </label>
+                <input type="number" class="form-control" id="amountPeople" name="amountPeople" required [(ngModel)]="product.amountPeople">
+                <hr class="hr-line-solid">
+
+                <label for="marketable">Comercializable: </label>
+                <input type="checkbox" class="checkbox" id="marketable" name="marketable" required [(ngModel)]="product.marketable">
+                <hr class="hr-line-solid">
+              </div>
+
+              <div class="col-md-12">
+                <button class="btn btn-warning" (click)="view = 'products'">Cancelar</button>
+                <button type="submit" class="btn btn-success">Agregar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view == 'edit'" class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          Editar Producto
+        </div>
+
+        <div class="ibox-content">
+          <div class="row">
+            <form #productForm="ngForm" (ngSubmit)="updateProduct(product)">
+              <div class="form-group col-md-6">
+                <label for="name">Nombre: </label>
+                <input type="text" class="form-control" id="editName" name="name" required [(ngModel)]="product.name">
+                <hr class="hr-line-solid">
+
+                <label for="editDescription">Descripción: </label>
+                <input type="text" class="form-control" id="editDescription" name="description" required [(ngModel)]="product.description">
+                <hr class="hr-line-solid">
+
+                <label for="editPrice">Precio: </label>
+                <input type="number" class="form-control" id="editPrice" name="price" required [(ngModel)]="product.price">
+                <hr class="hr-line-solid">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="editType">Tipo: </label>
+                <select class="form-control" name="type" id="editType" required [(ngModel)]="product.type">
+                  <option value="sushi">Sushi</option>
+                  <option value="wok">Wok</option>
+                  <option value="entradas">Entradas y Salsas</option>
+                  <option value="lunch">Lunch</option>
+                  <option value="buffet">Buffet</option>
+                  <option value="dulces">Cosas Dulces</option>
+                </select>
+                <hr class="hr-line-solid">
+
+                <label for="editAmountPeople">Para cuantas personas: </label>
+                <input type="number" class="form-control" id="editAmountPeople" name="amountPeople" required [(ngModel)]="product.amountPeople">
+                <hr class="hr-line-solid">
+
+                <label for="editMarketable">Comercializable: </label>
+                <input type="checkbox" class="checkbox" id="editMarketable" name="marketable" required [(ngModel)]="product.marketable">
+                <hr class="hr-line-solid">
+              </div>
+
+              <div class="col-md-12">
+                <button class="btn btn-warning" (click)="view = 'products'">Cancelar</button>
+                <button type="submit" class="btn btn-success">Guardar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
