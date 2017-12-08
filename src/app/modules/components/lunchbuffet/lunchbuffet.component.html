@@ -78,7 +78,7 @@
             </div>
             <div class="m-t text-right">
 
-              <a href="#" class="btn btn-xs btn-outline btn-primary" (click)="filtro = 'entradas'">Ver <i class="fa fa-long-arrow-right"></i> </a>
+              <a href="#" class="btn btn-xs btn-outline btn-primary" (click)="filter = 'entradas'">Ver <i class="fa fa-long-arrow-right"></i> </a>
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@
   <div class="row">
     <div class="col-lg-12" *ngFor="let product of products">
 
-      <div *ngIf="product.typeProduct == filtro" class="ibox product-detail">
+      <div *ngIf="product.typeProduct == filter" class="ibox product-detail">
         <div class="ibox-content">
 
           <div class="row">

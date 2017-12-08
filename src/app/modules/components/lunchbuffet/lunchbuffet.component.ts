@@ -11,6 +11,8 @@ export class LunchbuffetComponent implements OnInit {
   public products: Array<Product>;
   public Lunch = false;
   public errorMessage: any;
+  public lunchbuffetList=false;
+  public filter: string = '';
 
   constructor(private productService: ProductService) { }
 

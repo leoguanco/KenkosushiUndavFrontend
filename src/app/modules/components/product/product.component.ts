@@ -11,9 +11,8 @@ export class ProductComponent implements OnInit {
   public errorMessage;
   public products: Array<Product>;
   public product: Product;
-  public sushi = false;
-  public wok= false;
-  public entradas = false;
+  public productList=false;
+  public filter: string = '';
 
   constructor(private productService: ProductService) { }
 
