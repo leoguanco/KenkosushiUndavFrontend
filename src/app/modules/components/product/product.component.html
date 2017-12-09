@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <br><br><br><br>
-<div *ngIf="sushi == false" class="row wrapper border-bottom white-bg page-heading">
+<div *ngIf="productList == false" class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-10">
     <h2>Grilla de productos</h2>
     <ol class="breadcrumb">
@@ -19,7 +19,7 @@
 
   </div>
 </div>
-<div *ngIf="sushi == false" class="wrapper wrapper-content animated fadeInRight">
+<div *ngIf="productList == false" class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
     <div class="col-md-4">
       <div class="ibox">
@@ -35,7 +35,7 @@
               El sushi es muy sano; contiene poca grasa y muchos nutrientes. Las algas, por ejemplo, están repletas de vitaminas y minerales y el pescado azul (tales como el atún o el salmón) es una buena fuente de ácidos grasos poliinsaturados. El wasabi (rábano picante japonés) y el vinagre de arroz facilitan la digestión.
             </div>
             <div class="m-t text-right">
-              <a class="btn btn-xs btn-outline btn-primary" (click)="sushi = true">Ver <i class="fa fa-long-arrow-right"></i> </a>
+              <a class="btn btn-xs btn-outline btn-primary" (click)="productList = true" (click)="filter='sushi'">Ver <i class="fa fa-long-arrow-right"></i> </a>
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="m-t text-right">
 
-              <a href="#" class="btn btn-xs btn-outline btn-primary" (click)="wok = true">Ver <i class="fa fa-long-arrow-right"></i> </a>
+              <a href="#" class="btn btn-xs btn-outline btn-primary" (click)="productList = true" (click)="filter='wok'">Ver <i class="fa fa-long-arrow-right"></i> </a>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
             </div>
             <div class="m-t text-right">
 
-              <a href="#" class="btn btn-xs btn-outline btn-primary" (click)="entradas = true">Ver <i class="fa fa-long-arrow-right"></i> </a>
+              <a href="#" class="btn btn-xs btn-outline btn-primary" (click)="productList = true" (click)="filter='entradas'">Ver <i class="fa fa-long-arrow-right"></i> </a>
             </div>
           </div>
         </div>
@@ -87,7 +87,79 @@
   </div>
 </div>
 
-<div *ngIf="sushi == true" class="wrapper wrapper-content animated fadeInRight">
+<div *ngIf="productList == true" class="wrapper wrapper-content animated fadeInRight">
+
+  <div class="row">
+    <div class="col-lg-12" *ngFor="let product of products">
+
+      <div class="ibox product-detail" *ngIf="product.type==filter">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-5">
+              <ngx-slick dots="true">
+                <div>
+                  <div class="image-imitation">
+                    [IMAGE 1]
+                  </div>
+                </div>
+              </ngx-slick>
+            </div>
+            <div class="col-md-7">
+              <h2 class="font-bold m-b-xs">
+              {{product.name}}
+              </h2>
+              <small>Many desktop publishing packages and web page editors now.</small>
+              <div class="m-t-md">
+                <h2 class="product-main-price">{{product.price}}<small class="text-muted">ARS</small> </h2>
+              </div>
+              <hr>
+              <h4>Product description</h4>
+
+              <div class="small text-muted">
+                {{product.description}}
+
+                <br/>
+                <br/>
+
+              </div>
+              <dl class="small m-t-md">
+                <dt>Description lists</dt>
+                <dd>{{product.amountPeople}} personas </dd>
+                <dt>Euismod</dt>
+                <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                <dt>Malesuada porta</dt>
+                <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+              </dl>
+              <hr>
+
+              <div>
+                <div class="btn-group">
+                  <button class="btn btn-primary btn-sm"><i class="fa fa-cart-plus"></i> Add to cart</button>
+                  <button class="btn btn-white btn-sm"><i class="fa fa-star"></i> Add to wishlist </button>
+                  <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </div>
+        <div class="ibox-footer">
+                            <span class="pull-right">
+                                Full stock - <i class="fa fa-clock-o"></i> 14.04.2016 10:04 pm
+                            </span>
+          La imagen puede reflejar o no la realidad.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="entradas == true" class="wrapper wrapper-content animated fadeInRight">
 
   <div class="row">
     <div class="col-lg-12" for>
