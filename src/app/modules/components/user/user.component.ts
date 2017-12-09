@@ -16,9 +16,11 @@ export class UserComponent implements OnInit {
   public users: Array<User>;
   public address: Address;
   public phone: Phone;
+  public view: string;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.view = 'user';
     this.getAllUser();
   }
 
@@ -38,6 +40,8 @@ export class UserComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.getAllUser();
+          this.view = 'user';
         }, error => {
           this.errorMessage = <any>error;
 
@@ -48,8 +52,14 @@ export class UserComponent implements OnInit {
       );
   }
 
+  editUser(item) {
+    this.user = item;
+    this.view = 'edit';
+  }
+
   updateUser(item) {
     const data = {
+      id: this.user.id,
       username: this.user.username,
       password: this.user.password,
       lastLogin: this.user.lastLogin,

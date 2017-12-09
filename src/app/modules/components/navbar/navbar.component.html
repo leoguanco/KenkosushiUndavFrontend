@@ -16,7 +16,7 @@
           <li><a class="page-scroll" routerLink="/lunchbuffet">Lunch & Buffet</a></li>
           <li><a class="page-scroll" routerLink="/contact">Contacto</a></li>
           <li *ngIf="admin == true"><a class="page-scroll" routerLink="/ambproducts">ABM Productos</a></li>
-          <li *ngIf="admin == true"><a class="page-scroll" routerLink="/contact">ABM Usuarios</a></li>
+          <li *ngIf="admin == true"><a class="page-scroll" routerLink="/abmclients">ABM Clientes</a></li>
           <li *ngIf="admin == true"><a class="page-scroll" routerLink="/configuration">Configuración</a></li>
           <li><a class="page-scroll" *ngIf="token == null" routerLink="/login" routerLinkActive="active">LogIn</a></li>
           <li><a class="page-scroll" *ngIf="token != null" routerLink="/home" (click)="logout()" routerLinkActive="active">LogOut</a></li>
