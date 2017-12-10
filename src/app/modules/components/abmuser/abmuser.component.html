@@ -36,26 +36,19 @@
             <thead>
             <tr>
               <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              <th>Tipo</th>
-              <th>Comercializable</th>
-              <th>Editar</th>
+              <th>Observaciones</th>
+              <th>Username</th>
+              <th>Email</th>
               <th>Eliminar</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let product of products">
-              <td>{{product.name}}</td>
-              <td>{{product.description}}</td>
-              <td>{{product.price}}</td>
-              <td>{{product.type}}</td>
-              <td>
-                <span *ngIf="product.marketable"><i class="fa fa-2x fa-check-circle-o"></i></span>
-                <span *ngIf="!product.marketable"><i class="fa fa-2x fa-times-circle-o"></i></span>
-              </td>
-              <td><span (click)="editProduct(product)"><i class="fa fa-2x fa-tasks text-navy"></i></span></td>
-              <td><span (click)="deleteProduct(product)"><i class="fa fa-2x fa-times text-danger"></i></span></td>
+            <tr *ngFor="let user of users">
+              <td>{{user.name}}</td>
+              <td>{{user.observations}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td><span (click)="deleteUser(user)"><i class="fa fa-2x fa-times text-danger"></i></span></td>
             </tr>
             </tbody>
           </table>
@@ -70,45 +63,62 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          Agregar Producto
+          Agregar Cliente
         </div>
 
         <div class="ibox-content">
           <div class="row">
-            <form #productForm="ngForm" (ngSubmit)="addProduct()">
+            <form #productForm="ngForm" (ngSubmit)="addUser()">
               <div class="form-group col-md-6">
                 <label for="name">Nombre: </label>
-                <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="product.name">
+                <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="user.name">
                 <hr class="hr-line-solid">
 
-                <label for="description">Teléfono: </label>
-                <input type="text" class="form-control" id="description" name="description" required [(ngModel)]="product.description">
+                <label for="phone">Teléfono: </label>
+                <input type="number" min="0" class="form-control" id="phone" name="phone" required [(ngModel)]="phone.phone">
                 <hr class="hr-line-solid">
 
-                <label for="price">Domicilio: </label>
-                <input type="number" class="form-control" id="price" name="price" required [(ngModel)]="product.price">
+                <label for="address">Domicilio: </label>
+                <input type="text" class="form-control" id="address" name="address" required [(ngModel)]="address.address">
                 <hr class="hr-line-solid">
+
+                <div>
+                  <label>Barrio Cerrado: </label>
+                  <br>
+                  <div class="radio radio-info radio-inline" style="display: none">
+                  </div>
+                  <div class="radio radio-info radio-inline">
+                    <input type="radio" id="inlineRadio1" value="si" name="radioInline" [(ngModel)]="address.typeAddress" >
+                    <label for="inlineRadio1"> Sí </label>
+                  </div>
+                  <div class="radio radio-info radio-inline">
+                    <input type="radio" id="inlineRadio2" value="no" name="radioInline" [(ngModel)]="address.typeAddress">
+                    <label for="inlineRadio2"> No </label>
+                  </div>
+                  <hr class="hr-line-solid">
+                </div>
               </div>
 
               <div class="form-group col-md-6">
-                <label for="type">Barrio Cerrado: </label>
+                <label for="observation">Observaciones: </label>
+                <input type="text" class="form-control" id="observation" name="observation" required [(ngModel)]="user.observations">
                 <hr class="hr-line-solid">
 
-                <label for="amountPeople">Observaciones: </label>
-                <input type="number" class="form-control" id="amountPeople" name="amountPeople" required [(ngModel)]="product.amountPeople">
+                <label for="user">Usuario: </label>
+                <input type="text" class="form-control" id="user" name="user" required [(ngModel)]="user.username">
                 <hr class="hr-line-solid">
 
-                <label for="marketable">Usuario: </label>
-                <input type="checkbox" class="checkbox" id="marketable" name="marketable" required [(ngModel)]="product.marketable">
+                <label for="password">Password: </label>
+                <input type="password" class="form-control" id="password" name="password" required [(ngModel)]="user.password">
                 <hr class="hr-line-solid">
 
-                <label for="marketable">Password: </label>
-                <input type="checkbox" class="checkbox" id="marketable" name="marketable" required [(ngModel)]="product.marketable">
+                <label for="email">Email: </label>
+                <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="user.email">
                 <hr class="hr-line-solid">
               </div>
 
               <div class="col-md-12">
-                <button class="btn btn-warning" (click)="view = 'products'">Cancelar</button>
+                <button class="btn btn-warning" (click)="view = 'user'">Cancelar</button>
                 <button type="submit" class="btn btn-success">Agregar</button>
               </div>
             </form>
@@ -119,60 +129,64 @@
   </div>
 </div>
 
-<div *ngIf="view == 'edit'" class="wrapper wrapper-content animated fadeInRight">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          Editar Producto
-        </div>
+<!--<div *ngIf="view == 'edit'" class="wrapper wrapper-content animated fadeInRight">-->
+  <!--<div class="row">-->
+    <!--<div class="col-lg-12">-->
+      <!--<div class="ibox float-e-margins">-->
+        <!--<div class="ibox-title">-->
+          <!--Agregar Producto-->
+        <!--</div>-->
 
-        <div class="ibox-content">
-          <div class="row">
-            <form #productForm="ngForm" (ngSubmit)="updateProduct(product)">
-              <div class="form-group col-md-6">
-                <label for="name">Nombre: </label>
-                <input type="text" class="form-control" id="editName" name="name" required [(ngModel)]="product.name">
-                <hr class="hr-line-solid">
+        <!--<div class="ibox-content">-->
+          <!--<div class="row">-->
+            <!--<form #productForm="ngForm" (ngSubmit)="addProduct()">-->
+              <!--<div class="form-group col-md-6">-->
+                <!--<label for="name">Nombre: </label>-->
+                <!--<input type="text" class="form-control" id="name" name="name" required [(ngModel)]="product.name">-->
+                <!--<hr class="hr-line-solid">-->
 
-                <label for="editDescription">Descripción: </label>
-                <input type="text" class="form-control" id="editDescription" name="description" required [(ngModel)]="product.description">
-                <hr class="hr-line-solid">
+                <!--<label for="phone">Teléfono: </label>-->
+                <!--<input type="text" class="form-control" id="phone" name="phone" required [(ngModel)]="product.description">-->
+                <!--<hr class="hr-line-solid">-->
 
-                <label for="editPrice">Precio: </label>
-                <input type="number" class="form-control" id="editPrice" name="price" required [(ngModel)]="product.price">
-                <hr class="hr-line-solid">
-              </div>
+                <!--<label for="address">Domicilio: </label>-->
+                <!--<input type="number" class="form-control" id="address" name="address" required [(ngModel)]="product.price">-->
+                <!--<hr class="hr-line-solid">-->
+              <!--</div>-->
 
-              <div class="form-group col-md-6">
-                <label for="editType">Tipo: </label>
-                <select class="form-control" name="type" id="editType" required [(ngModel)]="product.type">
-                  <option value="sushi">Sushi</option>
-                  <option value="wok">Wok</option>
-                  <option value="entradas">Entradas y Salsas</option>
-                  <option value="lunch">Lunch</option>
-                  <option value="buffet">Buffet</option>
-                  <option value="dulces">Cosas Dulces</option>
-                </select>
-                <hr class="hr-line-solid">
+              <!--<div class="form-group col-md-6">-->
+                <!--<label>Barrio Cerrado: </label>-->
+                <!--<div class="radio radio-info radio-inline">-->
+                  <!--<input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">-->
+                  <!--<label for="inlineRadio1"> Sí </label>-->
+                <!--</div>-->
+                <!--<div class="radio radio-inline">-->
+                  <!--<input type="radio" id="inlineRadio2" value="option2" name="radioInline">-->
+                  <!--<label for="inlineRadio2"> No </label>-->
+                <!--</div>-->
+                <!--<hr class="hr-line-solid">-->
 
-                <label for="editAmountPeople">Para cuantas personas: </label>
-                <input type="number" class="form-control" id="editAmountPeople" name="amountPeople" required [(ngModel)]="product.amountPeople">
-                <hr class="hr-line-solid">
+                <!--<label for="observation">Observaciones: </label>-->
+                <!--<input type="number" class="form-control" id="observation" name="observation" required [(ngModel)]="product.amountPeople">-->
+                <!--<hr class="hr-line-solid">-->
 
-                <label for="editMarketable">Comercializable: </label>
-                <input type="checkbox" class="checkbox" id="editMarketable" name="marketable" required [(ngModel)]="product.marketable">
-                <hr class="hr-line-solid">
-              </div>
+                <!--<label for="user">Usuario: </label>-->
+                <!--<input type="checkbox" class="checkbox" id="user" name="user" required [(ngModel)]="product.marketable">-->
+                <!--<hr class="hr-line-solid">-->
 
-              <div class="col-md-12">
-                <button class="btn btn-warning" (click)="view = 'products'">Cancelar</button>
-                <button type="submit" class="btn btn-success">Guardar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                <!--<label for="password">Password: </label>-->
+                <!--<input type="checkbox" class="checkbox" id="password" name="password" required [(ngModel)]="product.marketable">-->
+                <!--<hr class="hr-line-solid">-->
+              <!--</div>-->
+
+              <!--<div class="col-md-12">-->
+                <!--<button class="btn btn-warning" (click)="view = 'products'">Cancelar</button>-->
+                <!--<button type="submit" class="btn btn-success">Agregar</button>-->
+              <!--</div>-->
+            <!--</form>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

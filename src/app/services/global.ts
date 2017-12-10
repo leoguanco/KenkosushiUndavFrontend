@@ -1,5 +1,3 @@
 export const GLOBAL = {
-  api: 'http://api.kenko.tk'
+  api: 'http://localhost:8080'
 };
-
-//http://localhost:8080

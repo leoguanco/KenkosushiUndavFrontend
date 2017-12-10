@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../class/user';
 import { UserService } from '../../../services/user.service';
+import {Address} from '../../../class/address';
+import {Phone} from '../../../class/phone';
 
 @Component({
   selector: 'app-abmuser',
@@ -9,6 +11,8 @@ import { UserService } from '../../../services/user.service';
 })
 export class AbmuserComponent implements OnInit {
   public user: User;
+  public address: Address;
+  public phone: Phone;
   public users: Array<User>;
   public errorMessage;
   public view: string;
@@ -19,16 +23,16 @@ export class AbmuserComponent implements OnInit {
     this.getAllUser();
     this.view = 'user';
     this.user = new User();
+    this.address = new Address();
+    this.phone = new Phone();
   }
 
   addUser() {
+    let userResponse: User;
     const data = {
       username: this.user.username,
       password: this.user.password,
-      lastLogin: this.user.lastLogin,
-      isActive: this.user.isActive,
       name: this.user.name,
-      surname: this.user.surname,
       email: this.user.email,
       observations: this.user.observations
     };
@@ -36,7 +40,42 @@ export class AbmuserComponent implements OnInit {
     this.userService.addUser(data)
       .subscribe(
         response => {
-          console.log(response);
+          userResponse = response;
+
+          const dataPhone = {
+            phone: this.phone.phone,
+            user: userResponse
+          };
+
+          const dataAddres = {
+            address: this.address.address,
+            typeAddress: this.address.typeAddress
+          };
+
+          this.userService.addUserPhone(userResponse.id, dataPhone).subscribe(
+            phoneResponse => {
+              console.log(phoneResponse);
+            }, error2 => {
+              this.errorMessage = <any>error2;
+
+              if (this.errorMessage !== null) {
+                console.log(this.errorMessage);
+              }
+            }
+          );
+
+          this.userService.addUserAddress(userResponse.id, dataAddres).subscribe(
+            addressResponse => {
+              console.log(addressResponse);
+            }, error2 => {
+              this.errorMessage = <any>error2;
+
+              if (this.errorMessage !== null) {
+                console.log(this.errorMessage);
+              }
+            }
+          );
+
           this.user = new User();
           this.getAllUser();
           this.view = 'user';
@@ -50,45 +89,38 @@ export class AbmuserComponent implements OnInit {
       );
   }
 
-  editUser(item) {
-    this.user = item;
-    this.view = 'edit';
-  }
-
-  updateUser(item) {
-    const data = {
-      id: this.user.id,
-      username: this.user.username,
-      password: this.user.password,
-      lastLogin: this.user.lastLogin,
-      isActive: this.user.isActive,
-      name: this.user.name,
-      surname: this.user.surname,
-      email: this.user.email,
-      observations: this.user.observations
-    };
-
-    this.userService.updateUser(item.id, data)
-      .subscribe(
-        response => {
-          console.log(response);
-        }, error => {
-          this.errorMessage = <any>error;
-
-          if (this.errorMessage !== null) {
-            console.log(this.errorMessage);
-          }
-        }
-      );
-  }
-
   deleteUser(item) {
-    this.userService.deleteUser(item.id)
+    this.userService.deleteUserAddress(item.id)
       .subscribe(
         response => {
           console.log(response);
-        }, error => {
-          this.errorMessage = <any>error;
+          this.userService.deleteUserPhone(item.id)
+            .subscribe(
+              response2 => {
+                console.log(response2);
+                this.userService.deleteUser(item.id)
+                  .subscribe(
+                    response3 => {
+                      console.log(response3);
+                      this.getAllUser();
+                    }, error => {
+                      this.errorMessage = <any>error;
+
+                      if (this.errorMessage !== null) {
+                        console.log(this.errorMessage);
+                      }
+                    }
+                  );
+              }, error2 => {
+                this.errorMessage = <any>error2;
+
+                if (this.errorMessage !== null) {
+                  console.log(this.errorMessage);
+                }
+              }
+            );
+        }, error2 => {
+          this.errorMessage = <any>error2;
 
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);

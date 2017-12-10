@@ -19,7 +19,8 @@ export class UserService {
 
   addUser(body) {
     const json = JSON.stringify(body);
-    return this._http.post(this.api + '/admin/users/', json, {headers: this.headers});
+    return this._http.post(this.api + '/admin/users/', json, {headers: this.headers})
+      .map(res => res.json());
 
   }
 
@@ -42,9 +43,9 @@ export class UserService {
       .map(res => res.json());
   }
 
-  addUserAddress(body) {
+  addUserAddress(id, body) {
     const json = JSON.stringify(body);
-    return this._http.post(this.api + '/admin/address/', json,{headers: this.headers});
+    return this._http.post(this.api + '/admin/users/' + id + '/addresses/', json,{headers: this.headers});
   }
 
   updateUserAddress(id, body) {
@@ -53,7 +54,7 @@ export class UserService {
   }
 
   deleteUserAddress(id) {
-    return this._http.delete(this.api + '/admin/address/' + id, {headers: this.headers});
+    return this._http.delete(this.api + '/admin/users/' + id + '/addresses/', {headers: this.headers});
   }
 
   getAllUserAddress() {
@@ -61,9 +62,9 @@ export class UserService {
       .map(res => res.json());
   }
 
-  addUserPhone(body) {
+  addUserPhone(id, body) {
     const json = JSON.stringify(body);
-    return this._http.post(this.api + '/admin/phones/', json, {headers: this.headers});
+    return this._http.post(this.api + '/admin/users/' + id + '/phones/', json, {headers: this.headers});
   }
 
   updateUserPhone(id, body) {
@@ -72,7 +73,7 @@ export class UserService {
   }
 
   deleteUserPhone(id) {
-    return this._http.delete(this.api + '/admin/phones/' + id, {headers: this.headers});
+    return this._http.delete(this.api + '/admin/users/' + id + '/phones/', {headers: this.headers});
   }
 
   getAllUserPhone() {
