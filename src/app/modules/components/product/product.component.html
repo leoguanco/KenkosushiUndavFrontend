@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <br><br><br><br>
-<div *ngIf="productList == false" class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-10">
     <h2>Grilla de productos</h2>
     <ol class="breadcrumb">
@@ -11,7 +11,7 @@
         <a>E-commerce</a>
       </li>
       <li class="active">
-        <strong>Productos</strong>
+        <strong (click)="productList = false">Productos</strong>
       </li>
     </ol>
   </div>
