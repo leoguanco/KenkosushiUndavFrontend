@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { User } from '../../../class/user';
 import { UserService } from '../../../services/user.service';
 import {Address} from '../../../class/address';
 import {Phone} from '../../../class/phone';
+import {ToastsManager} from "ng2-toastr";
 
 @Component({
   selector: 'app-abmuser',
@@ -17,7 +18,9 @@ export class AbmuserComponent implements OnInit {
   public errorMessage;
   public view: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.getAllUser();
@@ -79,9 +82,10 @@ export class AbmuserComponent implements OnInit {
           this.user = new User();
           this.getAllUser();
           this.view = 'user';
+          this.toastr.info('Cliente creado', 'Clientes');
         }, error => {
           this.errorMessage = <any>error;
-
+          this.toastr.error('Se produjo un error en el servidor', 'Error');
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);
           }
@@ -103,9 +107,10 @@ export class AbmuserComponent implements OnInit {
                     response3 => {
                       console.log(response3);
                       this.getAllUser();
+                      this.toastr.info('Cliente eliminado', 'Clientes');
                     }, error => {
                       this.errorMessage = <any>error;
-
+                      this.toastr.error('Se produjo un error en el servidor', 'Error');
                       if (this.errorMessage !== null) {
                         console.log(this.errorMessage);
                       }
@@ -113,7 +118,7 @@ export class AbmuserComponent implements OnInit {
                   );
               }, error2 => {
                 this.errorMessage = <any>error2;
-
+                this.toastr.error('Se produjo un error en el servidor', 'Error');
                 if (this.errorMessage !== null) {
                   console.log(this.errorMessage);
                 }
@@ -121,7 +126,7 @@ export class AbmuserComponent implements OnInit {
             );
         }, error2 => {
           this.errorMessage = <any>error2;
-
+          this.toastr.error('Se produjo un error en el servidor', 'Error');
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);
           }
@@ -137,7 +142,7 @@ export class AbmuserComponent implements OnInit {
           this.users = response;
         }, error => {
           this.errorMessage = <any>error;
-
+          this.toastr.error('Se produjo un error en el servidor', 'Error');
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);
           }

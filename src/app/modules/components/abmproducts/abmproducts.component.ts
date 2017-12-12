@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Product} from '../../../class/product';
 import {ProductService} from '../../../services/product.service';
+import {ToasterService} from 'angular2-toaster';
+import {ToastsManager} from "ng2-toastr";
 
 @Component({
   selector: 'app-abmproducts',
@@ -13,7 +15,9 @@ export class AbmproductsComponent implements OnInit {
   public product: Product;
   public view: string;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.getAllProduct();
@@ -39,10 +43,11 @@ export class AbmproductsComponent implements OnInit {
           this.product = new Product();
           this.getAllProduct();
           this.view = 'products';
+          this.toastr.info('Producto creado', 'Productos');
         }, error => {
           this.errorMessage = <any>error;
-
           if (this.errorMessage !== null) {
+            this.toastr.error('Se produjo un error en el servidor', 'error');
             console.log(this.errorMessage);
           }
         }
@@ -73,9 +78,10 @@ export class AbmproductsComponent implements OnInit {
           this.getAllProduct();
           this.product = new Product();
           this.view = 'products';
+          this.toastr.info('Producto modificado', 'Productos');
         }, error => {
           this.errorMessage = <any>error;
-
+          this.toastr.error('Se produjo un error en el servidor', 'error');
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);
           }
@@ -89,9 +95,10 @@ export class AbmproductsComponent implements OnInit {
         response => {
           console.log(response);
           this.getAllProduct();
+          this.toastr.warning('Producto eliminado', 'Productos');
         }, error => {
           this.errorMessage = <any>error;
-
+          this.toastr.error('Se produjo un error en el servidor', 'error');
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);
           }
@@ -107,7 +114,7 @@ export class AbmproductsComponent implements OnInit {
           this.products = response;
         }, error => {
           this.errorMessage = <any>error;
-
+          this.toastr.error('Se produjo un error en el servidor', 'error');
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);
           }
@@ -123,7 +130,7 @@ export class AbmproductsComponent implements OnInit {
           this.product = response;
         }, error => {
           this.errorMessage = <any>error;
-
+          this.toastr.error('Se produjo un error en el servidor', 'error');
           if (this.errorMessage !== null) {
             console.log(this.errorMessage);
           }

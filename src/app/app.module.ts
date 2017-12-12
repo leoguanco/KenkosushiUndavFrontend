@@ -23,7 +23,11 @@ import { ConfigurationService } from './services/configuration.service';
 import { UserService } from './services/user.service';
 import { ProductService } from './services/product.service';
 
-import {SlickModule} from 'ngx-slick';
+import { SlickModule } from 'ngx-slick';
+import { AbmpromotionsComponent } from './modules/components/abmpromotions/abmpromotions.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'ng2-toastr';
 
 @NgModule({
   declarations: [
@@ -38,14 +42,17 @@ import {SlickModule} from 'ngx-slick';
     ContactComponent,
     LunchbuffetComponent,
     AbmproductsComponent,
-    AbmuserComponent
+    AbmuserComponent,
+    AbmpromotionsComponent
   ],
   imports: [
     HttpModule,
     FormsModule,
     BrowserModule,
     routing,
-    SlickModule.forRoot()
+    SlickModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastModule.forRoot()
   ],
   providers: [appRoutingProviders, LoginService, ProductService, ConfigurationService, UserService],
   bootstrap: [AppComponent]
