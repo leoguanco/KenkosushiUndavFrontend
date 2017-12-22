@@ -12,4 +12,4 @@ Correr `ng serve`. Navegar hacia `http://localhost:4200/`. La aplicación recarg
 
 ## Build
 
-Correr `ng build` para construir el proyecto. El resultado se guardará en el directorio `dist/`. Usar el flag `-prod` para produccin.
+Correr `ng build` para construir el proyecto. El resultado se guardará en el directorio `dist/`. Usar el flag `-prod` para producción.
